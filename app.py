@@ -148,9 +148,9 @@ def index():
 if __name__ == '__main__':
 
     RPC_CLIENT = RpcClient(
-        '127.0.0.1',
-        'guest',
-        'guest',
+        'kebnekaise.lmq.cloudamqp.com',
+        'myuahxwg',
+        '6KWHF66N-_4XBYksfgZPPeZebObGTxou',
         'rpc_queue'
     )
 

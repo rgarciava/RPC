@@ -41,9 +41,9 @@ def main():
 
     try:
         connection = amqpstorm.Connection(
-            'localhost',
-            'guest',
-            'guest'
+            'kebnekaise.lmq.cloudamqp.com',
+            'myuahxwg',
+            '6KWHF66N-_4XBYksfgZPPeZebObGTxou'
         )
 
         channel = connection.channel()
