@@ -34,6 +34,7 @@ class RpcClient(object):
             username=self.username,
             password=self.password,
             virtual_host='myuahxwg',
+            port=5671,
             ssl=True
         )
 

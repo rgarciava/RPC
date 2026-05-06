@@ -45,6 +45,7 @@ def main():
             username='myuahxwg',
             password='6KWHF66N-_4XBYksfgZPPeZebObGTxou',
             virtual_host='myuahxwg',
+            port=5671,
             ssl=True
         )
 
