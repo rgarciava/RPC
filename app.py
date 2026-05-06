@@ -1,4 +1,5 @@
 import threading
+import os
 from time import sleep
 from flask import Flask, render_template, request
 import amqpstorm
@@ -153,4 +154,7 @@ if __name__ == '__main__':
         'rpc_queue'
     )
 
-    app.run(debug=True)
+    app.run(
+    host='0.0.0.0',
+    port=int(os.environ.get("PORT", 5000))
+    )
