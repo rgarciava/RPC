@@ -30,9 +30,10 @@ class RpcClient(object):
     def open(self):
         """Open RabbitMQ connection."""
         self.connection = amqpstorm.Connection(
-            self.host,
-            self.username,
-            self.password
+            hostname=self.host,
+            username=self.username,
+            password=self.password,
+            virtual_host='myuahxwg'
         )
 
         self.channel = self.connection.channel()

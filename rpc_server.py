@@ -41,9 +41,10 @@ def main():
 
     try:
         connection = amqpstorm.Connection(
-            'kebnekaise.lmq.cloudamqp.com',
-            'myuahxwg',
-            '6KWHF66N-_4XBYksfgZPPeZebObGTxou'
+            hostname='kebnekaise.lmq.cloudamqp.com',
+            username='myuahxwg',
+            password='6KWHF66N-_4XBYksfgZPPeZebObGTxou',
+            virtual_host='myuahxwg'
         )
 
         channel = connection.channel()
