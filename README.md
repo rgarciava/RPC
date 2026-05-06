@@ -1,128 +1,177 @@
-Claro, aquí tienes un `README.md` detallado que te guía paso a paso para ejecutar tu proyecto Flask con llamadas RPC usando RabbitMQ (en Docker) y exponerlo con Ngrok:
+#  Sistema RPC Distribuido con Flask y RabbitMQ
+
+Este proyecto implementa un sistema RPC (Remote Procedure Call) utilizando Flask, RabbitMQ y AMQPStorm.  
+La aplicación permite enviar mensajes desde una interfaz web hacia un servidor RPC mediante colas de mensajes y recibir respuestas mediante callback.
 
 ---
 
-# 🚀 Proyecto Flask + RabbitMQ + RPC + Ngrok
+# Tecnologías utilizadas
 
-Este proyecto demuestra cómo usar **Flask** con llamadas **RPC asíncronas** a través de **RabbitMQ**, y exponer la aplicación web al mundo usando **Ngrok**.
-
----
-
-## 📦 Requisitos
-
-* Python 3.x
-* Docker (para correr RabbitMQ)
-* Ngrok (para exponer localmente tu app)
-* Git (opcional)
+- Python
+- Flask
+- RabbitMQ
+- AMQPStorm
+- Bootstrap 5
 
 ---
 
-## ⚙️ Instalación
+# 🧠 Arquitectura del sistema
 
-### 1. Clona o descarga este repositorio
-
-```bash
-git clone https://github.com/tu-usuario/rpc-flask-ngrok.git
-cd rpc-flask-ngrok
-```
-
-### 2. Instala dependencias de Python
-
-```bash
-pip install flask amqpstorm
+```text
+Cliente Web
+     ↓
+Flask Client
+     ↓
+RabbitMQ
+     ↓
+RPC Server
+     ↓
+Callback Response
 ```
 
 ---
 
-## 🐇 Levanta RabbitMQ con Docker
+# 📂 Estructura del proyecto
 
-```bash
-docker run -d --hostname my-rabbit --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```text
+RPC/
+│
+├── app.py
+├── rpc_server.py
+├── simular_clientes.bat
+├── requirements.txt
+│
+├── templates/
+│   └── index.html
+│
+└── README.md
 ```
-
-* Accede a RabbitMQ en tu navegador: [http://localhost:15672](http://localhost:15672)
-* Usuario: `guest`
-* Contraseña: `guest`
 
 ---
 
-## 🧠 Ejecuta el Servidor RPC
+# ⚙️ Instalación
 
-Abre una terminal y ejecuta:
+## 1. Instalar Python
+
+Instalar Python 3.10 o superior.
+
+Durante la instalación marcar:
+
+```text
+Add Python to PATH
+```
+
+---
+
+## 2. Instalar Erlang
+
+RabbitMQ necesita Erlang para funcionar.
+
+---
+
+## 3. Instalar RabbitMQ
+
+Instalar RabbitMQ Server y verificar que el servicio esté ejecutándose.
+
+---
+
+# Ejecutar el proyecto
+
+## Crear entorno virtual
+
+```bash
+python -m venv venv
+```
+
+---
+
+## Activar entorno virtual
+
+### PowerShell
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+```
+
+Luego:
+
+```powershell
+.\venv\Scripts\activate
+```
+
+---
+
+## Instalar dependencias
+
+```bash
+pip install flask amqpstorm 
+
+---
+
+# Ejecutar servidor RPC
+
+## Terminal 1
 
 ```bash
 python rpc_server.py
 ```
 
-Este script escucha solicitudes desde Flask y responde con un mensaje personalizado.
+Debe mostrarse:
+
+```text
+[Servidor RPC] Esperando solicitudes...
+```
 
 ---
 
-## 🌐 Ejecuta Flask
+# Ejecutar Flask
 
-En otra terminal, ejecuta:
+## Terminal 2
 
 ```bash
 python app.py
 ```
 
-Esto inicia el servidor en `http://127.0.0.1:5000`
-
 ---
 
-## 🌍 Exponer con Ngrok
+# Abrir aplicación web
 
-### 1. Descarga y configura Ngrok
+Ingresar a:
 
-Descarga desde: [https://ngrok.com/download](https://ngrok.com/download)
-
-Autentica tu cuenta (solo la primera vez):
-
-```bash
-ngrok config add-authtoken TU_AUTHTOKEN
-```
-
-### 2. Ejecuta Ngrok
-
-```bash
-ngrok http 5000
-```
-
-Ngrok mostrará una URL pública como:
-
-```
-Forwarding    https://abcd-1234.ngrok-free.app -> http://localhost:5000
-```
-
-📎 Usa esa URL para compartir tu app en la web.
-
----
-
-## 🖼️ Interfaz Web
-
-Cuando entres a la URL pública o `http://localhost:5000` verás una interfaz con Bootstrap donde puedes escribir un mensaje.
-Al enviar, Flask lo envía al servidor RPC, y te muestra la respuesta.
-
----
-
-## 📁 Estructura del Proyecto
-
-```
-.
-├── app.py               # Servidor Flask
-├── rpc_server.py        # Servidor RPC que responde mensajes
-├── templates/
-│   └── index.html       # Interfaz web con Bootstrap
-└── README.md            # Guía de instalación y ejecución
+```text
+http://127.0.0.1:5000
 ```
 
 ---
 
-## 🧹 Notas
+# Simulación de clientes
 
-* No uses `Flask` en modo `debug` para producción real.
-* Este ejemplo es educativo y no incluye manejo de errores avanzado ni seguridad.
+El archivo:
+
+```text
+simular_clientes.bat
+```
+
+permite enviar múltiples solicitudes RPC automáticamente usando CURL.
 
 ---
 
-¿Quieres que este README incluya también capturas de pantalla o comandos para despliegue en servicios como Render o Railway?
+# Despliegue en la nube
+
+La aplicación puede desplegarse en plataformas cloud como:
+
+- Render
+- Railway
+
+Y RabbitMQ puede utilizarse mediante:
+
+- CloudAMQP
+
+---
+
+#  Conclusiones
+
+- Se implementó un sistema RPC distribuido utilizando RabbitMQ.
+- Se utilizó callback para recibir respuestas asíncronas.
+- RabbitMQ permitió la comunicación entre cliente y servidor mediante colas de mensajes.
+- La aplicación puede ejecutarse localmente o desplegarse en la nube.
