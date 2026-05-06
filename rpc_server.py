@@ -44,7 +44,8 @@ def main():
             hostname='kebnekaise.lmq.cloudamqp.com',
             username='myuahxwg',
             password='6KWHF66N-_4XBYksfgZPPeZebObGTxou',
-            virtual_host='myuahxwg'
+            virtual_host='myuahxwg',
+            ssl=True
         )
 
         channel = connection.channel()

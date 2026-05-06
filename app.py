@@ -33,7 +33,8 @@ class RpcClient(object):
             hostname=self.host,
             username=self.username,
             password=self.password,
-            virtual_host='myuahxwg'
+            virtual_host='myuahxwg',
+            ssl=True
         )
 
         self.channel = self.connection.channel()
